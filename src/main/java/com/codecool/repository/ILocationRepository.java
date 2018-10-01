@@ -1,4 +1,9 @@
 package com.codecool.repository;
 
-public interface ILocationRepository {
+import com.codecool.model.Location;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ILocationRepository extends JpaRepository<Location, Long> {
 }
