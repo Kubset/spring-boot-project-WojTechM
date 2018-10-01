@@ -19,8 +19,7 @@ public class Location {
     public Location() {
     }
 
-    public Location(long id, String name, String description, String address) {
-        this.id = id;
+    public Location(String name, String description, String address) {
         this.name = name;
         this.description = description;
         this.address = address;
