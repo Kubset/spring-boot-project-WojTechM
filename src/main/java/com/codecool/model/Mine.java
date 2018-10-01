@@ -10,7 +10,7 @@ public class Mine {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToMany
+    @OneToOne
     private Location location;
     private String name;
 
