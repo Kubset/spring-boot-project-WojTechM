@@ -18,7 +18,7 @@ public class LocationController {
         this.service = service;
     }
 
-    @GetMapping()
+    @GetMapping
     List<Location> getAllLocations() {
         return service.getAllLocations();
     }
@@ -28,9 +28,18 @@ public class LocationController {
         return service.getLocationById(id);
     }
 
-    @PostMapping(consumes = "application/json")
-    void insertNewLocation(Location location) {
-        System.out.println(location.toString());
-        return;
+    @PostMapping
+    void insertNewLocation(@RequestBody Location location) {
+        service.insertLocation(location);
+    }
+
+    @PutMapping
+    void updateLocation(@RequestBody Location location) {
+        service.updateLocation(location);
+    }
+
+    @DeleteMapping(path = "/{id}")
+    void deleteLocation(@PathVariable(value = "id") long id) {
+        service.deleteLocation(id);
     }
 }
