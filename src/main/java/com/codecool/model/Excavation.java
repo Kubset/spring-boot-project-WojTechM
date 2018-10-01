@@ -1,34 +1,40 @@
 package com.codecool.model;
 
+import javax.persistence.ManyToOne;
+
 public class Excavation {
 
-    private long mineId;
-    private long resourceId;
+    @ManyToOne(targetEntity = Mine.class)
+    private Mine mine;
+
+    @ManyToOne(targetEntity = Resource.class)
+    private Resource resource;
+
     private long excavation;
 
     public Excavation() {
     }
 
-    public Excavation(long mineId, long resourceId, long excavation) {
-        this.mineId = mineId;
-        this.resourceId = resourceId;
+    public Excavation(Mine mine, Resource resource, long excavation) {
+        this.mine = mine;
+        this.resource = resource;
         this.excavation = excavation;
     }
 
-    public long getMineId() {
-        return mineId;
+    public Mine getMine() {
+        return mine;
     }
 
-    public void setMineId(long mineId) {
-        this.mineId = mineId;
+    public void setMine(Mine mine) {
+        this.mine = mine;
     }
 
-    public long getResourceId() {
-        return resourceId;
+    public Resource getResource() {
+        return resource;
     }
 
-    public void setResourceId(long resourceId) {
-        this.resourceId = resourceId;
+    public void setResource(Resource resource) {
+        this.resource = resource;
     }
 
     public long getExcavation() {

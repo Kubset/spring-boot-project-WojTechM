@@ -1,19 +1,24 @@
 package com.codecool.model;
 
 
+import javax.persistence.*;
 
+@Entity
 public class Mine {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private long locationId;
+
+    @OneToMany
+    private Location location;
     private String name;
 
     public Mine() {
     }
 
-    public Mine(long id, long locationId, String name) {
-        this.id = id;
-        this.locationId = locationId;
+    public Mine(Location location, String name) {
+        this.location = location;
         this.name = name;
     }
 
@@ -25,12 +30,12 @@ public class Mine {
         this.id = id;
     }
 
-    public long getLocationId() {
-        return locationId;
+    public Location getLocation() {
+        return location;
     }
 
-    public void setLocationId(long locationId) {
-        this.locationId = locationId;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public String getName() {
