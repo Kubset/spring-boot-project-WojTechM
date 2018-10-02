@@ -1,8 +1,14 @@
 package com.codecool.model;
 
-import javax.persistence.ManyToOne;
 
+import javax.persistence.*;
+
+@Entity
 public class Excavation {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     @ManyToOne(targetEntity = Mine.class)
     private Mine mine;
@@ -19,6 +25,14 @@ public class Excavation {
         this.mine = mine;
         this.resource = resource;
         this.excavation = excavation;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Mine getMine() {
