@@ -8,7 +8,7 @@ public interface ILocationService {
 
     List<Location> getAllLocations();
     Location getLocationById(long id);
-    void deleteLocation(long id);
-    void insertLocation(Location location);
-    void updateLocation(Location location);
+    boolean deleteLocation(long id);
+    boolean insertLocation(Location location);
+    boolean updateLocation(Location location);
 }
