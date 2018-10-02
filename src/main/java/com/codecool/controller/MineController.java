@@ -22,10 +22,8 @@ public class MineController {
 
     }
     @GetMapping
-    public List<Mine> getMines() {
-
+    public List<Mine> getAllMines() {
         return service.getAllMines();
-
     }
 
     @GetMapping(path = "/{id}")
