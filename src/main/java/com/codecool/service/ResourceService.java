@@ -10,35 +10,50 @@ import java.util.List;
 @Service
 public class ResourceService implements IResourceService {
 
-    private final IResourceRepository repository;
+    private final IResourceRepository resourceRepository;
 
     @Autowired
     public ResourceService(IResourceRepository resourceRepository) {
-        this.repository = resourceRepository;
+        this.resourceRepository = resourceRepository;
     }
 
     @Override
     public List<Resource> getAllResources() {
-        return repository.findAll();
+        return resourceRepository.findAll();
     }
 
     @Override
     public Resource getResourceById(long id) {
-        return repository.findById(id).orElse(null);
+        return resourceRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void deleteResource(long id) {
-        repository.deleteById(id);
+    public boolean deleteResource(long id) {
+        if(resourceRepository.findById(id).isPresent()) {
+            resourceRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
-    public void insertResource(Resource resource) {
-        repository.save(resource);
+    public boolean insertResource(Resource resource) {
+        if(resource.getId() == 0) {
+            resourceRepository.save(resource);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
-    public void updateResource(Resource resource) {
-        repository.save(resource);
+    public boolean updateResource(Resource resource) {
+         if(resourceRepository.findById(resource.getId()).isPresent()) {
+            resourceRepository.save(resource);
+            return true;
+        } else {
+            return false;
+        }
     }
 }
