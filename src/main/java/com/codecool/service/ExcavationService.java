@@ -11,30 +11,34 @@ import java.util.List;
 @Service
 public class ExcavationService implements IExcavationService {
 
-    private final IExcavationRepository repository;
+    private final IExcavationRepository excavationRepository;
     private final IMineRepository mineRepository;
     private final IResourceRepository resourceRepository;
 
-    public ExcavationService(IExcavationRepository repository, IMineRepository mineRepository, IResourceRepository resourceRepository) {
-        this.repository = repository;
+    public ExcavationService(IExcavationRepository excavationRepository, IMineRepository mineRepository, IResourceRepository resourceRepository) {
+        this.excavationRepository = excavationRepository;
         this.mineRepository = mineRepository;
         this.resourceRepository = resourceRepository;
     }
 
     @Override
     public List<Excavation> getAllExcavations() {
-        return repository.findAll();
+        return excavationRepository.findAll();
     }
 
     @Override
     public Excavation getExcavationById(long id) {
-        return repository.findById(id).orElse(null);
+        return excavationRepository.findById(id).orElse(null);
     }
 
     @Override
     public boolean deleteExcavation(long id) {
-        repository.deleteById(id);
-        return true;
+        if(excavationRepository.findById(id).isPresent()) {
+            excavationRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -48,7 +52,7 @@ public class ExcavationService implements IExcavationService {
     @Override
     public boolean updateExcavation(Excavation excavation) {
         long id = excavation.getId();
-        if (repository.findById(id).isPresent()) {
+        if (excavationRepository.findById(id).isPresent()) {
             return persistExcavation(excavation);
         }
         return false;
@@ -60,7 +64,7 @@ public class ExcavationService implements IExcavationService {
         if (!mineByIdExists(mineId) || !resourceByIdExists(resourceId)) {
             return false;
         }
-        repository.save(excavation);
+        excavationRepository.save(excavation);
         return true;
     }
 
