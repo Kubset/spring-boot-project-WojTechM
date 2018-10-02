@@ -10,35 +10,50 @@ import java.util.List;
 @Service
 public class LocationService implements ILocationService {
 
-    private final ILocationRepository repository;
+    private final ILocationRepository locationRepository;
 
     @Autowired
-    public LocationService(ILocationRepository repository) {
-        this.repository = repository;
+    public LocationService(ILocationRepository locationRepository) {
+        this.locationRepository = locationRepository;
     }
 
     @Override
     public List<Location> getAllLocations() {
-        return repository.findAll();
+        return locationRepository.findAll();
     }
 
     @Override
     public Location getLocationById(long id) {
-        return repository.findById(id).orElse(null);
+        return locationRepository.findById(id).orElse(null);
     }
 
     @Override
-    public void deleteLocation(long id) {
-        repository.deleteById(id);
+    public boolean deleteLocation(long id) {
+        if(locationRepository.findById(id).isPresent()) {
+            locationRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
-    public void insertLocation(Location location) {
-        repository.save(location);
+    public boolean insertLocation(Location location) {
+        if(location.getId() == 0) {
+            locationRepository.save(location);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
-    public void updateLocation(Location location) {
-        repository.save(location);
+    public boolean updateLocation(Location location) {
+         if(locationRepository.findById(location.getId()).isPresent()) {
+            locationRepository.save(location);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

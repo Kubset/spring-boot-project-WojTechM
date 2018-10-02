@@ -8,7 +8,7 @@ public interface IResourceService {
 
     List<Resource> getAllResources();
     Resource getResourceById(long id);
-    void deleteResource(long id);
-    void insertResource(Resource resource);
-    void updateResource(Resource resource);
+    boolean deleteResource(long id);
+    boolean insertResource(Resource resource);
+    boolean updateResource(Resource resource);
 }

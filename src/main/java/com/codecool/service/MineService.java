@@ -30,9 +30,12 @@ public class MineService implements IMineService {
 
     @Override
     public boolean deleteMine(long id) {
-        mineRepository.deleteById(id);
-
-        return false;
+        if(mineRepository.findById(id).isPresent()) {
+            mineRepository.deleteById(id);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
