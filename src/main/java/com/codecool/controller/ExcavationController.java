@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/excavation")
-public class ExcavationController {
+public class ExcavationController extends AbstractController {
     private final IExcavationService service;
 
     @Autowired
@@ -35,18 +35,20 @@ public class ExcavationController {
     }
 
     @PostMapping
-    void insertNewExcavation(@RequestBody Excavation excavation) {
-        service.insertExcavation(excavation);
+    ResponseEntity<Excavation> insertNewExcavation(@RequestBody Excavation excavation) {
+        boolean isSuccess = service.insertExcavation(excavation);
+        return getResponseEntity(isSuccess);
     }
 
     @PutMapping
-    void updateExcavation(@RequestBody Excavation excavation) {
-        service.updateExcavation(excavation);
+    ResponseEntity<Excavation> updateExcavation(@RequestBody Excavation excavation) {
+        boolean isSuccess = service.updateExcavation(excavation);
+        return getResponseEntity(isSuccess);
     }
 
     @DeleteMapping(path = "/{id}")
-    void deleteExcavation(@PathVariable(value = "id") long id) {
-        service.deleteExcavation(id);
+    ResponseEntity<Excavation> deleteExcavation(@PathVariable(value = "id") long id) {
+        boolean isSuccess = service.deleteExcavation(id);
+        return getResponseEntity(isSuccess);
     }
-
 }
