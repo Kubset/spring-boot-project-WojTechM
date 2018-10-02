@@ -19,8 +19,7 @@ public class Resource {
     public Resource() {
     }
 
-    public Resource(long id, String name, String description, long price) {
-        this.id = id;
+    public Resource(String name, String description, long price) {
         this.name = name;
         this.description = description;
         this.price = price;
