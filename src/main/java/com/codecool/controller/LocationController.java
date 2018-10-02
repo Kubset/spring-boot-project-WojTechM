@@ -3,6 +3,8 @@ package com.codecool.controller;
 import com.codecool.model.Location;
 import com.codecool.service.ILocationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,8 +26,12 @@ public class LocationController {
     }
 
     @GetMapping(path = "/{id}")
-    Location getLocationById(@PathVariable(value = "id") long id) {
-        return service.getLocationById(id);
+    ResponseEntity<Location> getLocationById(@PathVariable(value = "id") long id) {
+        Location entity = service.getLocationById(id);
+        if (entity == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(entity, HttpStatus.OK);
     }
 
     @PostMapping
