@@ -1,7 +1,7 @@
 package com.codecool.controller;
 
-import com.codecool.model.Location;
-import com.codecool.service.ILocationService;
+import com.codecool.model.Resource;
+import com.codecool.service.IResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,24 +10,24 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/location")
-public class LocationController {
+@RequestMapping("/api/resource")
+public class ResourceController {
 
-    private final ILocationService service;
+    private final IResourceService service;
 
     @Autowired
-    public LocationController(ILocationService service) {
+    public ResourceController(IResourceService service) {
         this.service = service;
     }
 
     @GetMapping
-    List<Location> getAllLocations() {
-        return service.getAllLocations();
+    List<Resource> getAllLocations() {
+        return service.getAllResources();
     }
 
     @GetMapping(path = "/{id}")
-    ResponseEntity<Location> getLocationById(@PathVariable(value = "id") long id) {
-        Location entity = service.getLocationById(id);
+    ResponseEntity<Resource> getLocationById(@PathVariable(value = "id") long id) {
+        Resource entity = service.getResourceById(id);
         if (entity == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -35,17 +35,17 @@ public class LocationController {
     }
 
     @PostMapping
-    void insertNewLocation(@RequestBody Location location) {
-        service.insertLocation(location);
+    void insertNewLocation(@RequestBody Resource resource) {
+        service.insertResource(resource);
     }
 
     @PutMapping
-    void updateLocation(@RequestBody Location location) {
-        service.updateLocation(location);
+    void updateLocation(@RequestBody Resource resource) {
+        service.updateResource(resource);
     }
 
     @DeleteMapping(path = "/{id}")
     void deleteLocation(@PathVariable(value = "id") long id) {
-        service.deleteLocation(id);
+        service.deleteResource(id);
     }
 }

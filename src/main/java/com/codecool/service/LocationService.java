@@ -24,21 +24,21 @@ public class LocationService implements ILocationService {
 
     @Override
     public Location getLocationById(long id) {
-        return null;
+        return repository.findById(id).orElse(null);
     }
 
     @Override
     public void deleteLocation(long id) {
-
+        repository.deleteById(id);
     }
 
     @Override
     public void insertLocation(Location location) {
-
+        repository.save(location);
     }
 
     @Override
     public void updateLocation(Location location) {
-
+        repository.save(location);
     }
 }
