@@ -43,12 +43,12 @@ public class MineController {
     }
 
     @PutMapping
-    void updateLocation(@RequestBody Mine mine) {
+    void updateMine(@RequestBody Mine mine) {
         service.updateMine(mine);
     }
 
     @DeleteMapping(path = "/{id}")
-    void deleteLocation(@PathVariable(value = "id") long id) {
+    void deleteMine(@PathVariable(value = "id") long id) {
         service.deleteMine(id);
     }
 
