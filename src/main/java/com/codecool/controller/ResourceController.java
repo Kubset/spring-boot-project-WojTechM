@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/resource")
-public class ResourceController {
+public class ResourceController extends AbstractController<Resource>{
 
     private final IResourceService service;
 
@@ -35,17 +35,20 @@ public class ResourceController {
     }
 
     @PostMapping
-    void insertNewLocation(@RequestBody Resource resource) {
-        service.insertResource(resource);
+    ResponseEntity<Resource> insertNewLocation(@RequestBody Resource resource) {
+        boolean isSuccess = service.insertResource(resource);
+        return getResponseEntity(isSuccess);
     }
 
     @PutMapping
-    void updateLocation(@RequestBody Resource resource) {
-        service.updateResource(resource);
+    ResponseEntity<Resource> updateLocation(@RequestBody Resource resource) {
+        boolean isSuccess = service.updateResource(resource);
+        return getResponseEntity(isSuccess);
     }
 
     @DeleteMapping(path = "/{id}")
-    void deleteLocation(@PathVariable(value = "id") long id) {
-        service.deleteResource(id);
+    ResponseEntity<Resource> deleteLocation(@PathVariable(value = "id") long id) {
+        boolean isSuccess = service.deleteResource(id);
+        return getResponseEntity(isSuccess);
     }
 }

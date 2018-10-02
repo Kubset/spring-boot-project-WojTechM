@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/mine")
-public class MineController {
+public class MineController extends AbstractController<Mine>{
     private final IMineService service;
 
     @Autowired
@@ -36,18 +36,21 @@ public class MineController {
     }
 
     @PostMapping
-    void insertNewMine(@RequestBody Mine mine) {
-        service.insertMine(mine);
+    ResponseEntity<Mine> insertNewMine(@RequestBody Mine mine) {
+        boolean isSuccess = service.insertMine(mine);
+        return getResponseEntity(isSuccess);
     }
 
     @PutMapping
-    void updateMine(@RequestBody Mine mine) {
-        service.updateMine(mine);
+    ResponseEntity<Mine> updateMine(@RequestBody Mine mine) {
+        boolean isSuccess = service.updateMine(mine);
+        return getResponseEntity(isSuccess);
     }
 
     @DeleteMapping(path = "/{id}")
-    void deleteMine(@PathVariable(value = "id") long id) {
-        service.deleteMine(id);
+    ResponseEntity<Mine> deleteMine(@PathVariable(value = "id") long id) {
+        boolean isSuccess = service.deleteMine(id);
+        return getResponseEntity(isSuccess);
     }
 
 }
