@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/excavation")
-public class ExcavationController extends AbstractController {
+public class ExcavationController extends AbstractController<Excavation> {
     private final IExcavationService service;
 
     @Autowired

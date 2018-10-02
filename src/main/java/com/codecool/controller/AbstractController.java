@@ -1,12 +1,11 @@
 package com.codecool.controller;
 
-import com.codecool.model.Excavation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-public class AbstractController {
+public class AbstractController<E> {
 
-    ResponseEntity<Excavation> getResponseEntity(boolean isSuccess) {
+    ResponseEntity<E> getResponseEntity(boolean isSuccess) {
         if (isSuccess) {
             return ResponseEntity.status(HttpStatus.OK).body(null);
         } else {
