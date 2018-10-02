@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/mine")
+@RequestMapping("/api/excavation")
 public class ExcavationController {
     IExcavationService service;
 
@@ -21,7 +21,7 @@ public class ExcavationController {
 
     }
     @GetMapping
-    public List<Excavation> getMines() {
+    public List<Excavation> getAllExcavations() {
         return service.getAllExcavations();
     }
 
