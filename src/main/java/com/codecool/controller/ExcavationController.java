@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/excavation")
 public class ExcavationController {
-    IExcavationService service;
+    private final IExcavationService service;
 
     @Autowired
     ExcavationController(ExcavationService excavationService) {

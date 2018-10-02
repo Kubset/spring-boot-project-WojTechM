@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/mine")
 public class MineController {
-    IMineService service;
+    private final IMineService service;
 
     @Autowired
     MineController(MineService mineService) {

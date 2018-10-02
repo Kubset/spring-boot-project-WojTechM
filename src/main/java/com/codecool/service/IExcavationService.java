@@ -7,7 +7,7 @@ import java.util.List;
 public interface IExcavationService {
     public List<Excavation> getAllExcavations();
     public Excavation getExcavationById(long id);
-    void deleteExcavation(long id);
-    void insertExcavation(Excavation excavation);
-    void updateExcavation(Excavation excavation);
+    boolean deleteExcavation(long id);
+    boolean insertExcavation(Excavation excavation);
+    boolean updateExcavation(Excavation excavation);
 }
