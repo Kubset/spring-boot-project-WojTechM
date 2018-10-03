@@ -3,7 +3,7 @@ package com.codecool.controller;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-public class AbstractController<E> {
+abstract class AbstractController<E> {
 
     ResponseEntity<E> getResponseEntity(boolean isSuccess) {
         if (isSuccess) {
