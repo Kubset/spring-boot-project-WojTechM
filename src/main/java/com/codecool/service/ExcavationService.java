@@ -33,7 +33,7 @@ public class ExcavationService implements IExcavationService {
 
     @Override
     public boolean deleteExcavation(long id) {
-        if(excavationRepository.findById(id).isPresent()) {
+        if (excavationRepository.findById(id).isPresent()) {
             excavationRepository.deleteById(id);
             return true;
         } else {

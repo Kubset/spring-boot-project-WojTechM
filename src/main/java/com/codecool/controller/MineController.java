@@ -1,7 +1,6 @@
 package com.codecool.controller;
 
 import com.codecool.model.Mine;
-import com.codecool.repository.IMineRepository;
 import com.codecool.service.IMineService;
 import com.codecool.service.MineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +12,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/mine")
-public class MineController extends AbstractController<Mine>{
+public class MineController extends AbstractController<Mine> {
     private final IMineService service;
 
     @Autowired
     MineController(MineService mineService) {
-       this.service = mineService;
+        this.service = mineService;
 
     }
+
     @GetMapping
     public List<Mine> getAllMines() {
         return service.getAllMines();

@@ -6,7 +6,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @Component
-public class InterceptorAppConfig  extends WebMvcConfigurerAdapter {
+public class InterceptorAppConfig extends WebMvcConfigurerAdapter {
 
     private final RestInterceptor restInterceptor;
     private final EmailInterceptor emailInterceptor;

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface IResourceRepository  extends JpaRepository<Resource, Long> {
+public interface IResourceRepository extends JpaRepository<Resource, Long> {
 
     @Query(value = "SELECT * FROM Resource where is_archived = false", nativeQuery = true)
     public List<Resource> findAll();

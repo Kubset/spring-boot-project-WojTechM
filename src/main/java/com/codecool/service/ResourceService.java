@@ -29,7 +29,7 @@ public class ResourceService implements IResourceService {
 
     @Override
     public boolean deleteResource(long id) {
-        if(resourceRepository.findById(id).isPresent()) {
+        if (resourceRepository.findById(id).isPresent()) {
             resourceRepository.deleteById(id);
             return true;
         } else {
@@ -39,7 +39,7 @@ public class ResourceService implements IResourceService {
 
     @Override
     public boolean insertResource(Resource resource) {
-        if(resource.getId() == 0) {
+        if (resource.getId() == 0) {
             resourceRepository.save(resource);
             return true;
         } else {
@@ -49,7 +49,7 @@ public class ResourceService implements IResourceService {
 
     @Override
     public boolean updateResource(Resource resource) {
-         if(resourceRepository.findById(resource.getId()).isPresent() && !resource.isArchived()) {
+        if (resourceRepository.findById(resource.getId()).isPresent() && !resource.isArchived()) {
             resourceRepository.save(resource);
             return true;
         } else {

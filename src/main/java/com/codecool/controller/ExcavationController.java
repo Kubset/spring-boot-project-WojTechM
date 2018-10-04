@@ -17,9 +17,10 @@ public class ExcavationController extends AbstractController<Excavation> {
 
     @Autowired
     ExcavationController(ExcavationService excavationService) {
-       this.service = excavationService;
+        this.service = excavationService;
 
     }
+
     @GetMapping
     public List<Excavation> getAllExcavations() {
         return service.getAllExcavations();

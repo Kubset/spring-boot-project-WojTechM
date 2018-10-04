@@ -29,7 +29,7 @@ public class LocationService implements ILocationService {
 
     @Override
     public boolean deleteLocation(long id) {
-        if(locationRepository.findById(id).isPresent()) {
+        if (locationRepository.findById(id).isPresent()) {
             locationRepository.deleteById(id);
             return true;
         } else {
@@ -39,7 +39,7 @@ public class LocationService implements ILocationService {
 
     @Override
     public boolean insertLocation(Location location) {
-        if(location.getId() == 0) {
+        if (location.getId() == 0) {
             locationRepository.save(location);
             return true;
         } else {
@@ -49,7 +49,7 @@ public class LocationService implements ILocationService {
 
     @Override
     public boolean updateLocation(Location location) {
-         if(locationRepository.findById(location.getId()).isPresent() && !location.isArchived()) {
+        if (locationRepository.findById(location.getId()).isPresent() && !location.isArchived()) {
             locationRepository.save(location);
             return true;
         } else {

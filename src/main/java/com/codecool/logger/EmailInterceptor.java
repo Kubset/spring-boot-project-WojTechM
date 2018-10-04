@@ -1,8 +1,6 @@
 package com.codecool.logger;
 
-import com.codecool.App;
 import com.codecool.controller.EmailController;
-import it.ozimov.springboot.mail.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -23,7 +21,7 @@ public class EmailInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        if(response.getStatus() < 500) return;
+        if (response.getStatus() < 500) return;
         String message = String.format("[%s] %s: %s %s - %d",
                 LocalDateTime.now().toString(),
                 request.getRemoteAddr(),
