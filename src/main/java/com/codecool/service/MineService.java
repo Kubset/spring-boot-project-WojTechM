@@ -59,7 +59,7 @@ public class MineService implements IMineService {
     private boolean persistMine(Mine mine) {
         long locationId = mine.getLocation().getId();
 
-        if(locationRepository.findById(locationId).isPresent()) {
+        if(locationRepository.findById(locationId).isPresent() && !mine.isArchived()) {
             mineRepository.save(mine);
             return true;
         } else {
