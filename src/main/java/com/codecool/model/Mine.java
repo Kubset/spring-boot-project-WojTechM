@@ -1,6 +1,8 @@
 package com.codecool.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,13 +15,16 @@ public class Mine {
     @OneToOne
     private Location location;
     private String name;
+    private boolean isArchived;
 
     public Mine() {
+        this.isArchived = false;
     }
 
     public Mine(Location location, String name) {
         this.location = location;
         this.name = name;
+        this.isArchived = false;
     }
 
     public long getId() {
@@ -44,6 +49,15 @@ public class Mine {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @JsonIgnore
+    public boolean isArchived() {
+        return isArchived;
+    }
+
+    public void setArchived(boolean archived) {
+        isArchived = archived;
     }
 }
 
