@@ -1,6 +1,8 @@
 package com.codecool.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -18,14 +20,17 @@ public class Excavation {
     private Resource resource;
 
     private long excavation;
+    private boolean isArchived;
 
     public Excavation() {
+        this.isArchived = false;
     }
 
     public Excavation(Mine mine, Resource resource, long excavation) {
         this.mine = mine;
         this.resource = resource;
         this.excavation = excavation;
+        this.isArchived = false;
     }
 
     public long getId() {
@@ -58,5 +63,14 @@ public class Excavation {
 
     public void setExcavation(long excavation) {
         this.excavation = excavation;
+    }
+
+    @JsonIgnore
+    public boolean isArchived() {
+        return isArchived;
+    }
+
+    public void setArchived(boolean archived) {
+        isArchived = archived;
     }
 }

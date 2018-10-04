@@ -49,7 +49,7 @@ public class LocationService implements ILocationService {
 
     @Override
     public boolean updateLocation(Location location) {
-         if(locationRepository.findById(location.getId()).isPresent()) {
+         if(locationRepository.findById(location.getId()).isPresent() && !location.isArchived()) {
             locationRepository.save(location);
             return true;
         } else {
