@@ -9,13 +9,14 @@ import com.codecool.repository.IExcavationRepository;
 import com.codecool.repository.ILocationRepository;
 import com.codecool.repository.IMineRepository;
 import com.codecool.repository.IResourceRepository;
+import it.ozimov.springboot.mail.configuration.EnableEmailTools;
 import org.apache.log4j.Logger;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-
+@EnableEmailTools
 @SpringBootApplication
 public class App {
     private static final Logger log = Logger.getLogger(App.class);
