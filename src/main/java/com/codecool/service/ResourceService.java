@@ -49,7 +49,7 @@ public class ResourceService implements IResourceService {
 
     @Override
     public boolean updateResource(Resource resource) {
-         if(resourceRepository.findById(resource.getId()).isPresent()) {
+         if(resourceRepository.findById(resource.getId()).isPresent() && !resource.isArchived()) {
             resourceRepository.save(resource);
             return true;
         } else {
