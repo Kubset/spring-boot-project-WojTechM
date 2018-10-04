@@ -8,6 +8,7 @@ public class Mine {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique = true, nullable = false, columnDefinition = "int default nextval('hibernate_sequence')")
     private long id;
 
     @OneToOne

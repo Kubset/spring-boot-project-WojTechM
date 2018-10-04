@@ -1,15 +1,13 @@
 package com.codecool.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique = true, nullable = false, columnDefinition = "int default nextval('hibernate_sequence')")
     private long id;
 
     private String name;
