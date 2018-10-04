@@ -1,28 +1,31 @@
 package com.codecool.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 @Entity
 public class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique = true, nullable = false, columnDefinition = "int default nextval('hibernate_sequence')")
     private long id;
 
     private String name;
     private String description;
     private String address;
+    private boolean isArchived;
 
     public Location() {
+        this.isArchived = false;
     }
 
     public Location(String name, String description, String address) {
         this.name = name;
         this.description = description;
         this.address = address;
+        this.isArchived = false;
     }
 
     public long getId() {
@@ -55,5 +58,14 @@ public class Location {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @JsonIgnore
+    public boolean isArchived() {
+        return isArchived;
+    }
+
+    public void setArchived(boolean archived) {
+        isArchived = archived;
     }
 }

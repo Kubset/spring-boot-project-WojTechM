@@ -30,7 +30,7 @@ public class MineService implements IMineService {
 
     @Override
     public boolean deleteMine(long id) {
-        if(mineRepository.findById(id).isPresent()) {
+        if (mineRepository.findById(id).isPresent()) {
             mineRepository.deleteById(id);
             return true;
         } else {
@@ -40,7 +40,7 @@ public class MineService implements IMineService {
 
     @Override
     public boolean insertMine(Mine mine) {
-        if(mine.getId() == 0) {
+        if (mine.getId() == 0) {
             return persistMine(mine);
         } else {
             return false;
@@ -49,7 +49,7 @@ public class MineService implements IMineService {
 
     @Override
     public boolean updateMine(Mine mine) {
-        if(mineRepository.findById(mine.getId()).isPresent()) {
+        if (mineRepository.findById(mine.getId()).isPresent()) {
             return persistMine(mine);
         } else {
             return false;
@@ -59,7 +59,7 @@ public class MineService implements IMineService {
     private boolean persistMine(Mine mine) {
         long locationId = mine.getLocation().getId();
 
-        if(locationRepository.findById(locationId).isPresent()) {
+        if (locationRepository.findById(locationId).isPresent() && !mine.isArchived()) {
             mineRepository.save(mine);
             return true;
         } else {

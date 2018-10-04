@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/resource")
-public class ResourceController extends AbstractController<Resource>{
+public class ResourceController extends AbstractController<Resource> {
 
     private final IResourceService service;
 
